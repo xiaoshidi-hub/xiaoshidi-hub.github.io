@@ -1,32 +1,242 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>使用STM32、FPGA、Linux点亮LED的异同 | 智果小芯</title><meta name="keywords" content="STM32,FPGA,Linux"><meta name="author" content="智果小芯"><meta name="copyright" content="智果小芯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：不知道小伙伴们点亮过多少板子的LED灯，有很多小伙伴留言说讲一下stm32、fpga、liunx他们之间有什么不同，不同点很多，口说无凭，今天就来点亮一下stm32、fpga和liunx板子的led灯，大家大致看一下点灯流程和点灯环境以及点灯流程，就能大概的了解一下三者的区别，可以有选择的去学习！  一、使用STM32点亮LED灯STM32从字面上来理解ST是意法半导体，M是Microele">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用STM32、FPGA、Linux点亮LED的异同">
+<meta property="og:url" content="http://liuyao-blog.cn/posts/1005.html">
+<meta property="og:site_name" content="智果小芯">
+<meta property="og:description" content="摘要：不知道小伙伴们点亮过多少板子的LED灯，有很多小伙伴留言说讲一下stm32、fpga、liunx他们之间有什么不同，不同点很多，口说无凭，今天就来点亮一下stm32、fpga和liunx板子的led灯，大家大致看一下点灯流程和点灯环境以及点灯流程，就能大概的了解一下三者的区别，可以有选择的去学习！  一、使用STM32点亮LED灯STM32从字面上来理解ST是意法半导体，M是Microele">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210703151519731.png">
+<meta property="article:published_time" content="2021-08-23T07:53:50.000Z">
+<meta property="article:modified_time" content="2021-08-24T05:50:22.413Z">
+<meta property="article:author" content="智果小芯">
+<meta property="article:tag" content="STM32">
+<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210703151519731.png"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://liuyao-blog.cn/posts/1005"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?baf1456d4757404df2cbcc54325df167";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 智果小芯","link":"链接: ","source":"来源: 智果小芯","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用STM32、FPGA、Linux点亮LED的异同',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-24 13:50:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2762488_bo15j5gdids.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智果小芯" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img-blog.csdnimg.cn/20210703151519731.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">智果小芯</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用STM32、FPGA、Linux点亮LED的异同</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-24T05:50:22.413Z" title="更新于 2021-08-24 13:50:22">2021-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/STM32/">STM32</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/STM32/FPGA/">FPGA</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/STM32/FPGA/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用STM32、FPGA、Linux点亮LED的异同"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>摘要</strong>：不知道小伙伴们点亮过多少板子的LED灯，有很多小伙伴留言说讲一下stm32、fpga、liunx他们之间有什么不同，不同点很多，口说无凭，今天就来点亮一下stm32、fpga和liunx板子的led灯，大家大致看一下点灯流程和点灯环境以及点灯流程，就能大概的了解一下三者的区别，可以有选择的去学习！</p>
+<p><img src="https://files.mdnice.com/user/3658/3eb0987c-8bf7-476e-9064-c85ddbbea95f.gif" alt=" "></p>
+<h2 id="一、使用STM32点亮LED灯"><a href="#一、使用STM32点亮LED灯" class="headerlink" title="一、使用STM32点亮LED灯"></a>一、使用STM32点亮LED灯</h2><p>STM32从字面上来理解ST是意法半导体，M是Microelectronics的缩写，32 表示32位，合起来理解，STM32就是指ST公司开发的32位微控制器。在如今的32 位控制器当中，<strong>STM32可以说是最璀璨的新星，它受宠若娇，大受工程师和市场的青睐，无芯能出其右</strong>。首先使用STM32电亮一个led灯，大家现在回过头来看是不是非常的简单。</p>
+<p>STM32初始化流程</p>
+<p>1、使能指定GPIO的时钟。</p>
+<p>2、初始化GPIO，比如输出功能、上拉、速度等等。</p>
+<p>3、STM32有的IO可以作为其它外设引脚，也就是IO复用，如果要将IO作为其它外设引脚使用的话就需要设置 IO 的复用功能。</p>
+<p>4、最后设置GPIO输出高电平或者低电平。</p>
+<h2 id="1、新建工程"><a href="#1、新建工程" class="headerlink" title="1、新建工程"></a>1、新建工程</h2><p><img src="https://img-blog.csdnimg.cn/20210703160023888.png" alt=" "></p>
+<h2 id="2、代码编写"><a href="#2、代码编写" class="headerlink" title="2、代码编写"></a>2、代码编写</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//LED IO初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LED_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  GPIO_InitTypeDef  GPIO_InitStructure;</span><br><span class="line">  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);<span class="comment">//使能GPIOF时钟</span></span><br><span class="line">  <span class="comment">//GPIOF9,F10初始化设置</span></span><br><span class="line">  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;<span class="comment">//LED0和LED1对应IO口</span></span><br><span class="line">  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;<span class="comment">//普通输出模式</span></span><br><span class="line">  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;<span class="comment">//推挽输出</span></span><br><span class="line">  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;<span class="comment">//100MHz</span></span><br><span class="line">  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;<span class="comment">//上拉</span></span><br><span class="line">  GPIO_Init(GPIOF, &amp;GPIO_InitStructure);<span class="comment">//初始化GPIO</span></span><br><span class="line">  GPIO_SetBits(GPIOF,GPIO_Pin_9 | GPIO_Pin_10);<span class="comment">//GPIOF9,F10设置高，灯灭</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<h2 id="3、编译代码"><a href="#3、编译代码" class="headerlink" title="3、编译代码"></a>3、编译代码</h2><p><img src="https://img-blog.csdnimg.cn/20210703160113436.png" alt=" "></p>
+<h2 id="4、配置下载器"><a href="#4、配置下载器" class="headerlink" title="4、配置下载器"></a>4、配置下载器</h2><p><img src="https://img-blog.csdnimg.cn/20210703160342187.png" alt=" "></p>
+<h2 id="烧录代码"><a href="#烧录代码" class="headerlink" title="烧录代码"></a>烧录代码</h2><p><img src="https://img-blog.csdnimg.cn/20210703160830212.png" alt=" "></p>
+<h2 id="二、使用FPGA点亮LED灯"><a href="#二、使用FPGA点亮LED灯" class="headerlink" title="二、使用FPGA点亮LED灯"></a>二、使用FPGA点亮LED灯</h2><p>FPGA(Field Programmable Gate Array，简称 FPGA)，译文：现场可编程门阵列，一种主要以数字电路为主的集成芯片，于1985年由Xilinx创始人之一 Ross Freeman发明，属于可编程逻辑器件PLD(Programmable Logic Device)的一种。真正意义上的第一颗FPGA芯片XC2064为Xilinx所发明，这个时间差不多比著名的摩尔定律晚20年左右，但是FPGA一经发明，后续的发展速度之快，超出大多数人的想象。</p>
+<p>计数器是在FPGA设计中最常用的一种<strong>时序逻</strong>辑电路，根据计数器的计数值我们可以精确的计算出FPGA内部各种信号之间的时间关系，每个信号何时拉高、何时拉低、拉高多久、拉低多久都可以由计数器实现精确的控制。而让<strong>计数器计数的是由外部晶振产生的时钟</strong>，所以可以比较精准的控制具体需要计数的时间。计数器一般都是从0开始计数，计数到我们需要的值或者计数满溢出后清零，并可以进行不断的循环。</p>
+<p>本例我们让计数器计数1s时间间隔，来实现led灯每隔1s闪烁一次的效果。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210627161523104.png" alt=" "><br><img src="https://img-blog.csdnimg.cn/20210627161546503.png" alt=" "><br><img src="https://img-blog.csdnimg.cn/2021062716182523.png" alt=" "><br><img src="https://img-blog.csdnimg.cn/20210627161842463.png" alt=" "></p>
+<h2 id="2、RTL代码的编写"><a href="#2、RTL代码的编写" class="headerlink" title="2、RTL代码的编写"></a>2、RTL代码的编写</h2><p>开始RTL代码的编写，RTL代码编写出的模块叫RTL模块(后文中也称<strong>功能模块</strong>、可综合模块)。之所以叫RTL代码是因为用Verilog HDL在Resistances Transistors Logic（寄存器传输级逻辑）来描述硬件电路，<strong>RTL代码能够综合出真实的电路以实现我们设计的功能</strong>，区别于不可综合的仿真代码。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">`timescale  <span class="number">1</span>ns/<span class="number">1</span>ns</span><br><span class="line"><span class="comment">//带标志信号的计数器</span></span><br><span class="line"><span class="keyword">module</span>  counter</span><br><span class="line">#(</span><br><span class="line">    parameter   CNT_MAX = <span class="number">25&#x27;</span>d24_999_999</span><br><span class="line">)</span><br><span class="line">(</span><br><span class="line">    input   wire    sys_clk     ,   <span class="comment">//系统时钟50Mhz</span></span><br><span class="line">    input   wire    sys_rst_n   ,   <span class="comment">//全局复位</span></span><br><span class="line">    output  reg     led_out         <span class="comment">//输出控制led灯</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">reg     [<span class="number">24</span>:<span class="number">0</span>]  cnt;       <span class="comment">//经计算得需要25位宽的寄存器才够500ms</span></span><br><span class="line">reg             cnt_flag;</span><br><span class="line"></span><br><span class="line"><span class="comment">//cnt:计数器计数,当计数到CNT_MAX的值时清零</span></span><br><span class="line">always@(posedge sys_clk <span class="keyword">or</span> negedge sys_rst_n)</span><br><span class="line">    <span class="keyword">if</span>(sys_rst_n == <span class="number">1&#x27;b</span>0)</span><br><span class="line">        cnt &lt;= <span class="number">25&#x27;b</span>0;</span><br><span class="line">    <span class="keyword">else</span>    <span class="keyword">if</span>(cnt &lt; CNT_MAX)</span><br><span class="line">         cnt &lt;= cnt + <span class="number">1&#x27;b</span>1;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">       cnt &lt;= <span class="number">25&#x27;b</span>0;</span><br><span class="line"><span class="comment">//cnt_flag:计数到最大值产生的标志信号</span></span><br><span class="line">always@(posedge sys_clk <span class="keyword">or</span> negedge sys_rst_n)</span><br><span class="line">    <span class="keyword">if</span>(sys_rst_n == <span class="number">1&#x27;b</span>0)</span><br><span class="line">        cnt_flag &lt;= <span class="number">1&#x27;b</span>0;</span><br><span class="line">    <span class="keyword">else</span>    <span class="keyword">if</span>(cnt == CNT_MAX - <span class="number">1&#x27;b</span>1)</span><br><span class="line">        cnt_flag &lt;= <span class="number">1&#x27;b</span>1;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cnt_flag &lt;= <span class="number">1&#x27;b</span>0;</span><br><span class="line"><span class="comment">//led_out:输出控制一个LED灯,每当计数满标志信号有效时取反</span></span><br><span class="line">always@(posedge sys_clk <span class="keyword">or</span> negedge sys_rst_n)</span><br><span class="line">    <span class="keyword">if</span>(sys_rst_n == <span class="number">1&#x27;b</span>0)</span><br><span class="line">        led_out &lt;= <span class="number">1&#x27;b</span>0;</span><br><span class="line">    <span class="keyword">else</span>    <span class="keyword">if</span>(cnt_flag == <span class="number">1&#x27;b</span>1)</span><br><span class="line">        led_out &lt;= ~led_out;</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<h2 id="3、代码的分析和综合"><a href="#3、代码的分析和综合" class="headerlink" title="3、代码的分析和综合"></a>3、代码的分析和综合</h2><p><img src="https://img-blog.csdnimg.cn/20210627165651197.png" alt=" "></p>
+<h2 id="4、-查看RTL视图"><a href="#4、-查看RTL视图" class="headerlink" title="4、 查看RTL视图"></a>4、 查看RTL视图</h2><p><img src="https://img-blog.csdnimg.cn/20210627165745627.png" alt=" "></p>
+<h2 id="5、Testbench代码的编写"><a href="#5、Testbench代码的编写" class="headerlink" title="5、Testbench代码的编写"></a>5、Testbench代码的编写</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">`timescale  <span class="number">1</span>ns/<span class="number">1</span><span class="function">ns</span></span><br><span class="line"><span class="function"><span class="keyword">module</span>  <span class="title">tb_counter</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//wire  define</span></span><br><span class="line">wire            led_out     ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//reg   define</span></span><br><span class="line">reg             sys_clk     ;</span><br><span class="line">reg             sys_rst_n   ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化系统时钟、全局复位</span></span><br><span class="line">initial begin</span><br><span class="line">    sys_clk    = <span class="number">1&#x27;b</span>1;</span><br><span class="line">    sys_rst_n &lt;= <span class="number">1&#x27;b</span>0;</span><br><span class="line">    #<span class="number">20</span></span><br><span class="line">    sys_rst_n &lt;= <span class="number">1&#x27;b</span>1;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">//sys_clk:模拟系统时钟，每10ns电平翻转一次，周期为20ns，频率为50Mhz</span></span><br><span class="line">always #<span class="number">10</span> sys_clk = ~sys_clk;</span><br><span class="line"></span><br><span class="line">initial begin</span><br><span class="line">    $timeformat(<span class="number">-9</span>, <span class="number">0</span>, <span class="string">&quot;ns&quot;</span>, <span class="number">6</span>);</span><br><span class="line">    $monitor(<span class="string">&quot;@time %t: led_out=%b&quot;</span>, $time, led_out);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="comment">//------------- counter_inst --------------</span></span><br><span class="line">counter</span><br><span class="line">#(</span><br><span class="line">    .CNT_MAX    (<span class="number">25&#x27;</span>d24     ) </span><br><span class="line">)</span><br><span class="line">counter_inst</span><br><span class="line">(</span><br><span class="line">    .sys_clk    (sys_clk    ),  <span class="comment">//input     sys_clk</span></span><br><span class="line">    .sys_rst_n  (sys_rst_n  ),  <span class="comment">//input     sys_rst_n</span></span><br><span class="line"></span><br><span class="line">    .led_out    (led_out    )   <span class="comment">//output    led_out</span></span><br><span class="line">);</span><br><span class="line">endmodule</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<h2 id="6、ModelSim仿真波形"><a href="#6、ModelSim仿真波形" class="headerlink" title="6、ModelSim仿真波形"></a>6、ModelSim仿真波形</h2><p><img src="https://img-blog.csdnimg.cn/20210627170314595.png" alt=" "></p>
+<p><img src="https://img-blog.csdnimg.cn/20210627170625819.png" alt=" "></p>
+<h2 id="7、上板验证"><a href="#7、上板验证" class="headerlink" title="7、上板验证"></a>7、上板验证</h2><p><img src="https://img-blog.csdnimg.cn/20210627171113354.png" alt=" "></p>
+<p><img src="https://img-blog.csdnimg.cn/20210627171206257.png" alt=" "></p>
+<p>程序下载完毕后，会看到板卡LED0不断闪烁，时间间隔为1秒。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703155654664.png" alt=" "></p>
+<h2 id="三、使用I-MX6ULL-IO点亮LED"><a href="#三、使用I-MX6ULL-IO点亮LED" class="headerlink" title="三、使用I.MX6ULL IO点亮LED"></a>三、使用I.MX6ULL IO点亮LED</h2><p>嵌入式linux学习者大体可以分为两类，一类是进阶用户，主要指已经有大量mcu工作经验的开发者， 他们希望进阶到更有难度，薪资更高的mpu开发中去。另一类则是学生用户，主要是刚开始接触嵌入式开发的大学生群体。</p>
+<p>I.MX应用处理器包括I.MX8、I.MX7、I.MX6及I.MX28系列，被广泛应用于工业控制、汽车电子领域，久经市场考验。而且它的产品线非常丰富，用户熟悉其中一款产品后就能非常方便地迁移至不同的平台。</p>
+<p>一般拿到一款全新的芯片，第一个要做的事情的就是驱动其GPIO，控制其GPIO输出高低电平，我们学习I.MX6U也一样的，先来学习一下I.MX6U的GPIO。在学习I.MX6U的GPIO之前，我们可以对比一下STM32的GPIO初始化(如果没有学过 STM32 就不用回顾了)，我们以最常见的STM32F103为例来看一下STM32的GPIO初始化，示例代码如下：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LED_Init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);<span class="comment">//使能 PB 端口时钟</span></span><br><span class="line">    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5; <span class="comment">//PB5 端口配置</span></span><br><span class="line">    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; <span class="comment">//推挽输出</span></span><br><span class="line">    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; <span class="comment">//IO 口速度</span></span><br><span class="line">    GPIO_Init(GPIOB, &amp;GPIO_InitStructure); <span class="comment">//根据设定参数初始化 GPIOB.5</span></span><br><span class="line">    GPIO_SetBits(GPIOB,GPIO_Pin_5); <span class="comment">//PB.5 输出高</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>STM32初始化流程</p>
+<p>1、使能指定GPIO的时钟。</p>
+<p>2、初始化 GPIO，比如输出功能、上拉、速度等等。</p>
+<p>3、STM32 有的 IO 可以作为其它外设引脚，也就是 IO 复用，如果要将 IO 作为其它外设引脚使用的话就需要设置 IO 的复用功能。</p>
+<p>4、最后设置GPIO输出高电平或者低电平。</p>
+<p>I.MX6U的GPIO一共有5组：<code>GPIO1、GPIO2、GPIO3、GPIO4和GPIO5</code>，其中GPIO1有32个IO，GPIO2有22个IO，GPIO3有29个IO、GPIO4有29个IO，GPIO5最少，只有12个IO，这样一共有<code>124个GPIO</code>。</p>
+<p>I.MX6ULL IO初始化流程</p>
+<p>1、使能时钟，<code>CCGR0—CCGR6</code>这7个寄存器控制着6ULL所有外设时钟的使能。为了简单，设置<code>CCGR0~CCGR6这7</code>个寄存器全部为<code>0XFFFFFFFF</code>，相当于使能所有外设时钟。</p>
+<p>2、IO复用，将寄存器<code>IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO03</code>的<code>bit3~0</code>设置为<code>0101=5</code>，这样<code>GPIO1_IO03</code>就复用为<code>GPIO</code>。</p>
+<p>3、寄存器<code>IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO03</code>是设置<code>GPIO1_IO03</code>的电气属性。包括压摆率、速度、驱动能力、开漏、上下拉等。</p>
+<p>4、配置<code>GPIO功</code>能，设置输入输出。设置<code>GPIO1_DR</code>寄存器bit3为1，也就是设置为输出模式。设置<code>GPIO1_DR</code>寄存器的<code>bit3</code>，为1表示输出高电平，为0表示输出低电平。</p>
+<p>汇编由一条一条指令构成，指令就涉及到汇编指令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Int a，b;</span><br><span class="line">a=b;</span><br></pre></td></tr></table></figure>
+
+<p>假设a地址为0X20，b地址为0x30</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">LDR R0, =0X30</span><br><span class="line">LDR R1, [R0]</span><br><span class="line">LDR R0, =0X20</span><br><span class="line">STR R1, [R0]</span><br></pre></td></tr></table></figure>
+
+<p>我们在使用汇编编写驱动的时候最常用的就是<code>LDR</code>和<code>STR</code>这两个指令。</p>
+<h2 id="1新建工程"><a href="#1新建工程" class="headerlink" title="1新建工程"></a>1新建工程</h2><p>新建工程文件夹<br><img src="https://img-blog.csdnimg.cn/20210702195345707.png" alt="新建裸机驱动文件夹"></p>
+<p><img src="https://img-blog.csdnimg.cn/2021070219562147.png" alt="新建LED灯文件夹"></p>
+<h2 id="2、在VSCode中编写代码"><a href="#2、在VSCode中编写代码" class="headerlink" title="2、在VSCode中编写代码"></a>2、在VSCode中编写代码</h2><p>ubuntu中我们使用的是VScode编辑器来写代码，跟在windows中新建项目一样，新建项目、保存工作区，然后编写代码。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210702213944379.png" alt=" "></p>
+<h2 id="3、编写代码"><a href="#3、编写代码" class="headerlink" title="3、编写代码"></a>3、编写代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">.global _start  <span class="comment">/* 全局标号 */</span></span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 1、使能所有时钟 ldf如果用大写就全部用大写,如果小写就全部用小写*/</span></span><br><span class="line">    ldr r0, =<span class="number">0X020C4068</span> <span class="comment">//将寄存器CCGR0地址0X020C4068 存放到 寄存器R0 中</span></span><br><span class="line">    ldr r1, =<span class="number">0XFFFFFFFF</span> <span class="comment">//把寄存器x地址0Xffffffff存放到 寄存器r1 中</span></span><br><span class="line">    str r1, [r0]<span class="comment">//把寄存器r1中的值(0XFFFFFFFF) 写入到寄存器r0里面的值作为地址的内存里面</span></span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C406C</span><span class="comment">/*将寄存器CCGR1地址(0X020C4068) 存放到 寄存器R0 中*/</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C4070</span>  <span class="comment">/* CCGR2 */</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C4074</span>  <span class="comment">/* CCGR3 */</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C4078</span>  <span class="comment">/* CCGR4 */</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C407C</span>  <span class="comment">/* CCGR5 */</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    ldr r0, =<span class="number">0X020C4080</span>  <span class="comment">/* CCGR6 */</span></span><br><span class="line">    str r1, [r0]</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 2、设置GPIO1_IO03复用为GPIO1_IO03 */</span></span><br><span class="line">    ldr r0, =<span class="number">0X020E0068</span><span class="comment">/* 将寄存器SW_MUX_GPIO1_IO03_BASE加载到r0中 */</span></span><br><span class="line">    ldr r1, =<span class="number">0X5</span><span class="comment">/* 设置寄存器SW_MUX_GPIO1_IO03_BASE的MUX_MODE为5 */</span></span><br><span class="line">    str r1,[r0]</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 3、配置GPIO1_IO03的IO属性</span></span><br><span class="line"><span class="comment">        *bit 16:0 HYS关闭</span></span><br><span class="line"><span class="comment">        *bit [15:14]: 00 默认下拉</span></span><br><span class="line"><span class="comment">     *bit [13]: 0 kepper功能</span></span><br><span class="line"><span class="comment">     *bit [12]: 1 pull/keeper使能</span></span><br><span class="line"><span class="comment">     *bit [11]: 0 关闭开路输出</span></span><br><span class="line"><span class="comment">     *bit [7:6]: 10 速度100Mhz</span></span><br><span class="line"><span class="comment">     *bit [5:3]: 110 R0/6驱动能力</span></span><br><span class="line"><span class="comment">     *bit [0]: 0 低转换率</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ldr r0, =<span class="number">0X020E02F4</span><span class="comment">/*寄存器SW_PAD_GPIO1_IO03_BASE */</span></span><br><span class="line">    ldr r1, =<span class="number">0X10B0</span></span><br><span class="line">    str r1,[r0]</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 4、设置GPIO1_IO03为输出 */</span></span><br><span class="line">    ldr r0, =<span class="number">0X0209C004</span><span class="comment">/*寄存器GPIO1_GDIR */</span></span><br><span class="line">    ldr r1, =<span class="number">0X0000008</span></span><br><span class="line">    str r1,[r0]</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 5、打开LED0</span></span><br><span class="line"><span class="comment">        * 设置GPIO1_IO03输出低电平</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    ldr r0, =<span class="number">0X0209C000</span><span class="comment">/*寄存器GPIO1_DR */</span></span><br><span class="line">   ldr r1, =<span class="number">0</span></span><br><span class="line">   str r1,[r0]</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 描述：loop死循环</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">loop:</span><br><span class="line">    b loop</span><br><span class="line">.global _start @全局标号</span><br><span class="line"><span class="comment">/**/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、编译代码"><a href="#4、编译代码" class="headerlink" title="4、编译代码"></a>4、编译代码</h2><p>使用如下三条命令来编译代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arm-linux-gnueabihf-gcc -g -c leds.s -o led.o</span><br><span class="line">arm-linux-gnueabihf-ld -Ttext <span class="number">0X87800000</span> led.o -o led.elf</span><br><span class="line">arm-linux-gnueabihf-objcopy -O binary -S -g led.elf led.bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210702213944379.png" alt="编译、链接、格式转换"></p>
+<p>最终生成了<code>led.o</code> <code>led.elf</code> <code>led.bin</code>三个文件</p>
+<h2 id="5、烧写代码"><a href="#5、烧写代码" class="headerlink" title="5、烧写代码"></a>5、烧写代码</h2><p>STM32中代码烧写到内部FLASH。IMX6ULL支持SD卡、EMMC、NAND、nor、SPI flash等启动。裸机例程选择烧写到SD卡里面。在ubuntu下向SD卡烧写裸机bin文件。烧写不是将bin文件拷贝到SD卡中，而是将bin文件烧写到SD卡绝对地址上。而且对于I.MX而言，不能直接烧写bin文件，比如先在bin文件前面添加头部。完成这个工作，需要使用正点原子提供的imxdownload软件。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210702215521979.png" alt="利用FileZilla Client软件将imxdownload软件发送到工程目录下"></p>
+<p>烧写的三个命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls /dev/sd* -l</span><br><span class="line">chmod 777 imxdownload </span><br><span class="line">./imxdownload led.bin /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<p>Imxdownload使用方法，确定要烧写的SD卡文件，需要使用<code>ls /dev/sd* -l</code>命令来检测SD是哪一个文件，我的是<code>/dev/sdb</code>。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703143001951.png" alt=" "></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703143110599.png" alt="插拔SD卡可以看到两个的区别"></p>
+<p>给予imxdownload可执行权限：<code>Chmod 777 imxdownload</code></p>
+<p>烧写：<code>./imxdownload led.bin /dev/sdb</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703143801135.png" alt="向SD卡烧写完成"></p>
+<p><code>Imxdownlaod</code>会向<code>led.bin</code>添加一个头部，生成新的<code>load.imx</code>文件，这个<code>load.imx</code>文件就是最终烧写到SD卡里面去的。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703144123428.png" alt=" "></p>
+<p>这里要注意的是如果烧写的速度在几十MB/S左右的话，那么可能意味着烧写失败了。而且是因为SD卡没找到而导致烧写失败，这个问题只能重启 ubuntu解决。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703144048229.png" alt=" "></p>
+<p>之后就可以从读卡器中把SD拔下来，然后插入到开发板中，将拨码开关拔止SD卡模式，供电之后，蓝色LED亮，红色LED灭，两秒钟之后红色LED亮。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703151519731.png" alt=" "></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">智果小芯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://liuyao-blog.cn/posts/1005.html">http://liuyao-blog.cn/posts/1005.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://liuyao-blog.cn" target="_blank">智果小芯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/STM32/">STM32</a><a class="post-meta__tags" href="/tags/FPGA/">FPGA</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/1007.html"><img class="prev-cover" src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SOCKET编程|TCP、UDP网络编程</div></div></a></div><div class="next-post pull-right"><a href="/posts/1006.html"><img class="next-cover" src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img class="cover" src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-23</div><div class="title">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">智果小芯</div><div class="author-info__description"><p>专注嵌入式物联网开发<br/>微信公众号：果果小师弟</p></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://zhiguoxin.blog.csdn.net/"><i class="fab fa-gitee"></i><span>访问主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/zhiguoxin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhiguoxin@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/s/Eeca8cbK1RKCbDEi0-B4iQ" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">分享嵌入式linux、单片机、物联网等知识，致力于打造最硬核的嵌入式技术站，更多精彩内容请关注我的微信工众号：果果小师弟。<img src="https://img-blog.csdnimg.cn/20210715171459939.png"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8STM32%E7%82%B9%E4%BA%AELED%E7%81%AF"><span class="toc-text">一、使用STM32点亮LED灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%96%B0%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="toc-text">1、新建工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="toc-text">2、代码编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81"><span class="toc-text">3、编译代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E9%85%8D%E7%BD%AE%E4%B8%8B%E8%BD%BD%E5%99%A8"><span class="toc-text">4、配置下载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%83%A7%E5%BD%95%E4%BB%A3%E7%A0%81"><span class="toc-text">烧录代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8FPGA%E7%82%B9%E4%BA%AELED%E7%81%AF"><span class="toc-text">二、使用FPGA点亮LED灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81RTL%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%96%E5%86%99"><span class="toc-text">2、RTL代码的编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E4%BB%A3%E7%A0%81%E7%9A%84%E5%88%86%E6%9E%90%E5%92%8C%E7%BB%BC%E5%90%88"><span class="toc-text">3、代码的分析和综合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81-%E6%9F%A5%E7%9C%8BRTL%E8%A7%86%E5%9B%BE"><span class="toc-text">4、 查看RTL视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81Testbench%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BC%96%E5%86%99"><span class="toc-text">5、Testbench代码的编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81ModelSim%E4%BB%BF%E7%9C%9F%E6%B3%A2%E5%BD%A2"><span class="toc-text">6、ModelSim仿真波形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E4%B8%8A%E6%9D%BF%E9%AA%8C%E8%AF%81"><span class="toc-text">7、上板验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8I-MX6ULL-IO%E7%82%B9%E4%BA%AELED"><span class="toc-text">三、使用I.MX6ULL IO点亮LED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E6%96%B0%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="toc-text">1新建工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%9C%A8VSCode%E4%B8%AD%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">2、在VSCode中编写代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">3、编写代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81"><span class="toc-text">4、编译代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E7%83%A7%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">5、烧写代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1003.html" title="如何正确的理解单片机的结构体"><img src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"/></a><div class="content"><a class="title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程"><img src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"/></a><div class="content"><a class="title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"/></a><div class="content"><a class="title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"/></a><div class="content"><a class="title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><img src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"/></a><div class="content"><a class="title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img-blog.csdnimg.cn/20210703151519731.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 智果小芯</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.chaicp.com/"><span>鄂ICP备20001730号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

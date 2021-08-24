@@ -1,7 +1,206 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>智果小芯 - 果果小师弟</title><meta name="author" content="智果小芯"><meta name="copyright" content="智果小芯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="专注嵌入式物联网开发微信公众号：果果小师弟">
+<meta property="og:type" content="website">
+<meta property="og:title" content="智果小芯">
+<meta property="og:url" content="http://liuyao-blog.cn/index.html">
+<meta property="og:site_name" content="智果小芯">
+<meta property="og:description" content="专注嵌入式物联网开发微信公众号：果果小师弟">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://liuyao-blog.cn/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg">
+<meta property="article:author" content="智果小芯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://liuyao-blog.cn/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://liuyao-blog.cn/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?baf1456d4757404df2cbcc54325df167";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 智果小芯","link":"链接: ","source":"来源: 智果小芯","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '智果小芯',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-08-24 16:49:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2762488_bo15j5gdids.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智果小芯" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">智果小芯</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/1001.html" title="公众号|博客原创图文汇总——必看">     <img class="post_bg" src="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/IMG_0210.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="公众号|博客原创图文汇总——必看"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1001.html" title="公众号|博客原创图文汇总——必看">公众号|博客原创图文汇总——必看</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-22T07:48:49.000Z" title="发表于 2021-08-22 15:48:49">2021-08-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/">公众号</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/">公众号</a></span></div><div class="content">
+摘要：公众号到现在已经陆续更新100多篇原创图文了。今天汇总一下原创图文，一来方便自己查看，有些知识一旦很长时间不用，会很容易忘掉。二是希望能帮助到更多的小伙伴，祝大家学有所成，学的开心。
+手把手系列干货|教你使用Doxygen制作漂亮的程序文档干货|手把手教你做一辆迷你平衡摩托车干货|手把手教你制作炫酷的PCB板3D爆炸图干货|手把手教你VSCode搭建STM32开发环境干货|手把手带你搞懂Modbus通信协议干货|手把手教你写一个串口调试助手干货|手把手教你制作一个示波器干货|手把手教你自制轮式机器人干货|手把手教你自制六足仿生机器人工具|手把手教你在VSCode中使用Git干货|手把手教你写单片机的结构体干货|手把手教你写单片机的指针干货|手把手教你写一个安卓app干货|手把手教你在显示设备上制作一个菜单干货|手把手教你用蓝牙模块开源|手把手教你造一个火星车开源|Qt for Android应用开发开源|基于QT的安卓手机蓝牙APP开发干货|果果教你利用Inno setup打包QT程序干货|基于QT5的串口&amp;网络调试助手开源|零基础一周完成平衡小车项目硬核|稚晖君教你制 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/1003.html" title="如何正确的理解单片机的结构体">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a></span></div><div class="content">摘要：听说还有好多学单片机的小伙伴不会用结构体？指针和结构体是学单片机必须要掌握的，如果你C语言掌握的不牢，单片机根本学不到精髓，只能完成一些低级的项目。看得懂结构体并且能够灵活运用结构体才能说你入门了单片机。本篇将以最通俗的方式结合STM32单片来讲讲结构体的运用。解决你学完C语言、考过了计算机二级还是看不懂单片机结构体的苦恼。宝藏文章，记得点赞转发收藏。
+大家知道指针和结构体是单片机的难点，所以就去学习C语言，找视频看书……
+
+这里面每一个视频的播放量都非常高。对于单纯的学习C语言，这里讲的很清楚。看完你不禁在下面评论一句：哇！讲的真的太清楚了吧！但是等你真正的学单片机的时候，你会发现我不是学过C语言吗？计算机二级我也过了啊！怎么这个指针和结构体都不懂啊？难道我学了一个假的C语言？
+
+其实这不是你的错，也不是单片机的错，而是在C语言和单片机之间需要一个过渡！这个需要过渡的点在很多单片机视频教程中并没有去讲解。因为教育机构默认你是知道的，所以在讲流水灯时他们并不会讲解GPIO初始化这个结构体，因为默认你是知道如何操作的。
+
+申明一个GPIO_InitTypeDef的结构体，然后在LE ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/SOCKET%E7%BC%96%E7%A8%8B/">SOCKET编程</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/SOCKET%E7%BC%96%E7%A8%8B/">SOCKET编程</a></span></div><div class="content">摘要：还在学校的朋友，如果感觉到很迷茫，不知道学什么的时候，可以上招聘网站上看看自己未来工作相关的职位的任职要求，这样就可以总结自己的一些不足、比较有针对性的去学习。不要觉得自己会玩个单片机就很NB，时刻提醒自己还很菜，要学的还有很多，不然想找高工资是没有门的，除非你家你有矿！今天来说说嵌入式必备技能之一Socket编程。
+一、什么是socket？Socket的英文原义是“孔”或“插座”。在编程中，Socket被称做 套接字，是网络通信中的一种约定。Socket编程的应用无处不在，我们平时用的QQ、微信、浏览器等程序，都与Socket编程有关。我们平时使用浏览器查资料，这个过程的技术原理是怎样的呢？
+
+我们平时使用浏览器，大致就是这样的一个过程。这里有两个重要的名词： 服务端与 客户端。Socket编程的目的就是如何实现这两端之间的通信。
+Socket编程在嵌入式中也很重要Socket编程不仅仅在互联网方面很重要，在我们的嵌入式方面也是非常的重要，因为现在很多电子设备都趋向于联网。比如很多嵌入式工作的招聘要求都会有这一条要求：
+
+
+
+
+还在学校的朋友，如果感觉到很迷茫，不知道学什么的时 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/STM32/">STM32</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/STM32/FPGA/">FPGA</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/STM32/FPGA/Linux/">Linux</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/STM32/">STM32</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/FPGA/">FPGA</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Linux/">Linux</a></span></div><div class="content">摘要：不知道小伙伴们点亮过多少板子的LED灯，有很多小伙伴留言说讲一下stm32、fpga、liunx他们之间有什么不同，不同点很多，口说无凭，今天就来点亮一下stm32、fpga和liunx板子的led灯，大家大致看一下点灯流程和点灯环境以及点灯流程，就能大概的了解一下三者的区别，可以有选择的去学习！
+
+一、使用STM32点亮LED灯STM32从字面上来理解ST是意法半导体，M是Microelectronics的缩写，32 表示32位，合起来理解，STM32就是指ST公司开发的32位微控制器。在如今的32 位控制器当中，STM32可以说是最璀璨的新星，它受宠若娇，大受工程师和市场的青睐，无芯能出其右。首先使用STM32电亮一个led灯，大家现在回过头来看是不是非常的简单。
+STM32初始化流程
+1、使能指定GPIO的时钟。
+2、初始化GPIO，比如输出功能、上拉、速度等等。
+3、STM32有的IO可以作为其它外设引脚，也就是IO复用，如果要将IO作为其它外设引脚使用的话就需要设置 IO 的复用功能。
+4、最后设置GPIO输出高电平或者低电平。
+1、新建工程
+2、代码编写//LED I ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">     <img class="post_bg" src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/STM32/">STM32</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/STM32/">STM32</a></span></div><div class="content">1、项目背景幼儿时期，还记得一个孩子用泡沫、马达和电池做了一艘电动快艇在河里转着圈圈，泛起的淡淡涟漪让我心潮起伏，驻足河边流连忘返。童年时期，一盒四驱车，让我体验到了毫不起眼的小零件可以组装出这么一台强劲的四驱车。再后来，小霸王学习机风靡时期，经常赖在大孩子家看着别人打游戏自己也感到无比兴奋。初中时期，受风靡一时的文曲星、步步高电子词典中“英雄坛说”、“伏魔记”、“魔塔”带来的深深痴迷，孩提时代就梦想着自己有一天能亲手打造一台硬件软件全自主设计的掌机。
+这个梦伴随着我的成长，让我在大学时代选择了研究电子电路设计、PCB layout、嵌入式编程，直至工作业余时间持续学习实践，终于在2019年7月1日，正式建立工程文件，花费了足足2年业余时间，一点一滴全程设计出名为ALTA-STM32H7掌上电脑，纯粹为了好玩。软件框架使用的安富莱 V7 例程，uCOS-III+emWin+FatFs+ST_USB，只差LWIP 集齐全部。在自己设计的掌机上开发了10个APP，分别是：时钟 APP、音乐 APP、图库 APP、设置 APP、文件 APP、版本 APP、电影 APP、游戏 APP、U 盘  ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/TortoiseGit/">TortoiseGit</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/TortoiseGit/">TortoiseGit</a></span></div><div class="content">摘要：大家肯定都写过毕业论文，写毕业论文的时候，每次修改之前，都会先把当前最新的版本复制一份，然后再重新命名一个标题，但是，之前的旧版本又不会删掉，为了保险起见，感觉万一新的文档没改好还能有个旧的版本可以用。
+于是，就有了下面的一幕
+
+大家别笑，这都是真实发生的案例，更有甚者，自己笔记本拷贝毕业论文到U盘，在其它电脑修改了，又忘记更新回自己电脑，或者，时间长了，想找到之前文档中的一些文字，但是又忘记在那个版本来。
+是不是非常苦恼，你可能觉得，那我找回之前的版本一个个查看不就可以了，又没删，但是你这才几个文件，如果文件数量翻几倍呢？
+那么，有没有什么软件可以帮助我们对文件进行版本控制呢？今天，晓宇姐姐教大家用Git来进行版本控制。
+听到Git，一些单片机或者是软件开发的初学者又打算停止看下去了，好麻烦啊，又得记一堆命令，每次改完我也懒得命令提交，我还是通过日期来记录好了，于是又出现下面一幕：
+
+项目完成初期，还大致记得每个版本改了什么，1个月后，需要某个旧版本的信息，或者新的版本出了什么问题，需要追溯查找改动的代码部分，这时候，麻烦就来了，工程师喃喃自语道 “我好像记得改了这个地方，但是 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/1002.html" title="零基础教你教你写一个安卓app">     <img class="post_bg" src="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/big_logo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="零基础教你教你写一个安卓app"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1002.html" title="零基础教你教你写一个安卓app">零基础教你教你写一个安卓app</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-22T07:48:49.000Z" title="发表于 2021-08-22 15:48:49">2021-08-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%AE%89%E5%8D%93app/">安卓app</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/APP/">APP</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%AE%89%E5%8D%93/">安卓</a></span></div><div class="content">
+摘要：最近有很多小伙伴在后台留言：Android Studio。我想大家是想写一个手机app，前面已经分享了在QT上如何写一个安卓蓝牙app，虽然qt可以做app，但是比起Android Studio还是差很多。这里介绍一种快速入门的方法来制作一款app，就算你是零基础小白没有学习过java语言也没有关系，相信看完我的文章，半天时间也能做一个安卓app。本文针对初学者，大佬勿喷啊
+1. 创建HelloWorld项目这里我就不介绍如何安装这个Android Studio软件了，网上有很多教程或者去B站找对应的安装视频就可以了。安装好软件之后就开始按照下面的步骤新建工程了。
+选择一个空应用
+按照图片的配置方法，设置好工程名和路径
+
+2. 修改阿里云镜像源这一步一定要需要，不然的话你需要编译很久，因为在sync的过程中要下载的很多资源是在外网的，这里使用阿里云镜像源就会很快。修改后只对本项目有效：
+第一处代码
+maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;&#125;mave ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">智果小芯</div><div class="author-info__description"><p>专注嵌入式物联网开发<br/>微信公众号：果果小师弟</p></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://zhiguoxin.blog.csdn.net/"><i class="fab fa-gitee"></i><span>访问主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/zhiguoxin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhiguoxin@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/s/Eeca8cbK1RKCbDEi0-B4iQ" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">分享嵌入式linux、单片机、物联网等知识，致力于打造最硬核的嵌入式技术站，更多精彩内容请关注我的微信工众号：果果小师弟。<img src="https://img-blog.csdnimg.cn/20210715171459939.png"/></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1003.html" title="如何正确的理解单片机的结构体"><img src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"/></a><div class="content"><a class="title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程"><img src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"/></a><div class="content"><a class="title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"/></a><div class="content"><a class="title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"/></a><div class="content"><a class="title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><img src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"/></a><div class="content"><a class="title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SOCKET%E7%BC%96%E7%A8%8B/"><span class="card-category-list-name">SOCKET编程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/STM32/"><span class="card-category-list-name">STM32</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/STM32/FPGA/"><span class="card-category-list-name">FPGA</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/STM32/FPGA/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">1</span></a></li></ul></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/TortoiseGit/"><span class="card-category-list-name">TortoiseGit</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%AC%E4%BC%97%E5%8F%B7/"><span class="card-category-list-name">公众号</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AE%89%E5%8D%93app/"><span class="card-category-list-name">安卓app</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/APP/" style="font-size: 1.1em; color: #999">APP</a> <a href="/tags/FPGA/" style="font-size: 1.1em; color: #999">FPGA</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/SOCKET%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">SOCKET编程</a> <a href="/tags/STM32/" style="font-size: 1.5em; color: #99a9bf">STM32</a> <a href="/tags/TortoiseGit/" style="font-size: 1.1em; color: #999">TortoiseGit</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 1.1em; color: #999">公众号</a> <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/" style="font-size: 1.1em; color: #999">单片机</a> <a href="/tags/%E5%AE%89%E5%8D%93/" style="font-size: 1.1em; color: #999">安卓</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-08-22T04:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-08-24T08:49:32.388Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 智果小芯</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.chaicp.com/"><span>鄂ICP备20001730号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,32 +1,292 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源) | 智果小芯</title><meta name="keywords" content="STM32"><meta name="author" content="智果小芯"><meta name="copyright" content="智果小芯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、项目背景幼儿时期，还记得一个孩子用泡沫、马达和电池做了一艘电动快艇在河里转着圈圈，泛起的淡淡涟漪让我心潮起伏，驻足河边流连忘返。童年时期，一盒四驱车，让我体验到了毫不起眼的小零件可以组装出这么一台强劲的四驱车。再后来，小霸王学习机风靡时期，经常赖在大孩子家看着别人打游戏自己也感到无比兴奋。初中时期，受风靡一时的文曲星、步步高电子词典中“英雄坛说”、“伏魔记”、“魔塔”带来的深深痴迷，孩提时代就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">
+<meta property="og:url" content="http://liuyao-blog.cn/posts/1006.html">
+<meta property="og:site_name" content="智果小芯">
+<meta property="og:description" content="1、项目背景幼儿时期，还记得一个孩子用泡沫、马达和电池做了一艘电动快艇在河里转着圈圈，泛起的淡淡涟漪让我心潮起伏，驻足河边流连忘返。童年时期，一盒四驱车，让我体验到了毫不起眼的小零件可以组装出这么一台强劲的四驱车。再后来，小霸王学习机风靡时期，经常赖在大孩子家看着别人打游戏自己也感到无比兴奋。初中时期，受风靡一时的文曲星、步步高电子词典中“英雄坛说”、“伏魔记”、“魔塔”带来的深深痴迷，孩提时代就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png">
+<meta property="article:published_time" content="2021-08-23T07:53:50.000Z">
+<meta property="article:modified_time" content="2021-08-24T05:50:28.311Z">
+<meta property="article:author" content="智果小芯">
+<meta property="article:tag" content="STM32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://liuyao-blog.cn/posts/1006"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?baf1456d4757404df2cbcc54325df167";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 智果小芯","link":"链接: ","source":"来源: 智果小芯","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-24 13:50:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2762488_bo15j5gdids.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智果小芯" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">智果小芯</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-24T05:50:28.311Z" title="更新于 2021-08-24 13:50:28">2021-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/STM32/">STM32</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1、项目背景"><a href="#1、项目背景" class="headerlink" title="1、项目背景"></a>1、项目背景</h2><p>幼儿时期，还记得一个孩子用泡沫、马达和电池做了一艘电动快艇在河里转着圈圈，泛起的淡淡涟漪让我心潮起伏，驻足河边流连忘返。童年时期，一盒四驱车，让我体验到了毫不起眼的小零件可以组装出这么一台强劲的四驱车。再后来，小霸王学习机风靡时期，经常赖在大孩子家看着别人打游戏自己也感到无比兴奋。初中时期，受风靡一时的文曲星、步步高电子词典中“英雄坛说”、“伏魔记”、“魔塔”带来的深深痴迷，孩提时代就梦想着自己有一天能亲手打造一台硬件软件全自主设计的掌机。</p>
+<p>这个梦伴随着我的成长，让我在大学时代选择了研究电子电路设计、PCB layout、嵌入式编程，直至工作业余时间持续学习实践，终于在2019年7月1日，正式建立工程文件，花费了足足2年业余时间，一点一滴全程设计出名为ALTA-STM32H7掌上电脑，纯粹为了好玩。软件框架使用的安富莱 V7 例程，uCOS-III+emWin+FatFs+ST_USB，只差LWIP 集齐全部。在自己设计的掌机上开发了10个APP，分别是：时钟 APP、音乐 APP、图库 APP、设置 APP、文件 APP、版本 APP、电影 APP、游戏 APP、U 盘 APP、波形 APP。演示视频和图片如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" alt="整体系统展示"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a1bc9d502ca013cf19197833c308d064.png" alt="游戏运行展示"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/5ebddec05eb8b13a430166691f0028e8.png" alt="硬件设计展示"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/655506ca793496d7d018b2a38f92521a.png" alt="IPS屏幕展示"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0ac3840a31e26c740bc40050408b15d0.png" alt="金手指核心板正面展示"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9934f32bad79502ed5d4a88bf9dfb2c5.png" alt="金手指核心板背面展示"></p>
+<h2 id="2、硬件设计"><a href="#2、硬件设计" class="headerlink" title="2、硬件设计"></a>2、硬件设计</h2><p>硬件构架采用核心板+底板+屏幕，使用 Alitum 软件绘制原理图，PADS 绘制 PCB 板。核心板为金手指 6 层设计，底板为 2 层设计，屏幕为 2 层设计。具体硬件明细如下。</p>
+<h2 id="2-1、核心板配置"><a href="#2-1、核心板配置" class="headerlink" title="2-1、核心板配置"></a>2-1、核心板配置</h2><ul>
+<li>CPU ： STM32H743XIH6（M7 核心、480MHz 主频、2MB Flash，1MB RAM）</li>
+<li>SDRAM ： IS42S32800G-6BLI（32 位，32MB）</li>
+<li>QSPI Flash ： W25Q256JVEIQ（4 线总线宽度，容量 32MB，支持 XIP，即可运行程序）</li>
+<li>SPI Flash ： W25Q64JVZEIQ（容量 8MB）</li>
+<li>NAND Flash ： MT29F4G08ABADAWP:IT（8 位总线宽度，容量 512MB）</li>
+<li>SD 卡座：Micro SD Card</li>
+<li>显示器接口：RGB 24bit、I2C 触摸、背光可调</li>
+<li>Typec-C 型 USB 口：1 个 USB Device 全速</li>
+<li>LED 灯 ： 2 个指示灯</li>
+<li>串行接口 ： 1 个</li>
+<li>SWD 下载接口 ： 1 个</li>
+<li>按键 ： 1 个复位键，1 个唤醒按键</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f2ec6b3fe11a9a10fdf2934f92ed1199.png" alt="核心板正面PCB图"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a3980cdc4feacc1f1be77429c16e9ade.png" alt="核心板背面PCB图"></p>
+<h2 id="2-2、底板配置"><a href="#2-2、底板配置" class="headerlink" title="2-2、底板配置"></a>2-2、底板配置</h2><ul>
+<li>二合一锂电池充电升压 IC ： TP5400/TP5410 （充电：4.2V/1A，输出 5V/1A）</li>
+<li>二合一锂电池保护 IC ： DW06D</li>
+<li>电量监控 IC ： STC3100</li>
+<li>线性 LDO IC ： AMS1117-3.3</li>
+<li>电压参考 IC ： LM285D-2.5</li>
+<li>光照强度 IC ： BH1730FVC</li>
+<li>EEPROM ： AT24C02C-STUM-T</li>
+<li>实时时钟 IC ： DS3231M</li>
+<li>以太网 IC ： LAN8720A</li>
+<li>音频 IC ： WM8978CGEFL（24 位 ADC 与 DAC）</li>
+<li>Typec-C 型 USB 口 ： 1 个 USB Device 全速，1 个串行接口（CH340G USB 转串口芯片）</li>
+<li>A 型 USB 口 ： 1 个 USB HOST 全速</li>
+<li>电池座子 ： 1 个双 18650 锂电池座子，1 个 CR1220 纽扣电池底座</li>
+<li>无线模块 ： NRF24L01（2.4GHz、SPI 接口驱动）</li>
+<li>温度模块 ： DS18B20</li>
+<li>湿度模块 ： DHT11</li>
+<li>耳机插座 ： 1 个音源输入，1 个音源输出</li>
+<li>按键 ： 1 个开机键，1 个确认键，1 个取消键，1 个 ISP 下载键，1 个复位键</li>
+<li>LED 灯 ： 1 个电源灯，3 个指示灯</li>
+<li>蜂鸣器 ： 1 个（9055 有源蜂鸣器 3V 9*5.5MM）</li>
+<li>麦克风 ： 1 个（6 * 2.2mm咪头 6022 尺寸）</li>
+<li>SWD 下载接口 ： 1 个</li>
+<li>扬声器 ： 1 个（8 欧姆）</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f5c6a5b21cd9a9f8a4d46602c4f5ad79.png" alt="底板正面PCB图"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/9c69d2347d2eaf30454d81bc98e0cd36.png" alt="底板背面PCB图"></p>
+<h2 id="2-3、屏幕配置"><a href="#2-3、屏幕配置" class="headerlink" title="2-3、屏幕配置"></a>2-3、屏幕配置</h2><ul>
+<li>RGB 电容触摸屏（并行 24 位 RGB 接口、分辨率 800*480、全视角 IPS、5 英寸、GT911 电容触摸）</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ab56a6de4295c908339ed0588b0e1420.png" alt="RGB屏幕正面PCB图"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4447deb0a2bdef3a1538ad8929f190d9.png" alt="RGB屏幕背面PCB图"></p>
+<h2 id="3、软件设计"><a href="#3、软件设计" class="headerlink" title="3、软件设计"></a>3、软件设计</h2><h2 id="3-1、软件版本"><a href="#3-1、软件版本" class="headerlink" title="3-1、软件版本"></a>3-1、软件版本</h2><p>软件框架为 uCOS-III+emWin+FatFs+ST_USB，还差网络没有加上，具体软件版本见如下列表</p>
+<ul>
+<li>ST_HAL 库 版本：V1.10.0</li>
+<li>BSP 驱动包 版本：V1.2</li>
+<li>uCOS-III 版本：V3.08.00</li>
+<li>uC/CPU 版本: V1.32.00</li>
+<li>uC/LIB 版本: V1.39.00</li>
+<li>emWin 版本：V6.10</li>
+<li>FatFS 版本：V0.14</li>
+<li>ST_USBD 版本：V2.7.1</li>
+<li>ST_USBH 版本：V3.3.4</li>
+</ul>
+<h2 id="3-2、掌机主界面及应用-APP-介绍"><a href="#3-2、掌机主界面及应用-APP-介绍" class="headerlink" title="3-2、掌机主界面及应用 APP 介绍"></a>3-2、掌机主界面及应用 APP 介绍</h2><p>基于ALTA-STM32H7 掌机开发的 10 个 APP 分别是：时钟 APP、音乐 APP、图库 APP、设置 APP、文件 APP、版本 APP、电影 APP、游戏 APP、U 盘 APP、波形 APP。</p>
+<ul>
+<li>主机面左侧透明区域为锂电池监测信息、emWin 的剩余内存（emWin 总共分配了 24MB）、和传感器（光照强度、温度、湿度）数据显示</li>
+<li>主界面右侧区域为 APP 布局界面，采用 ICONVIEW 控件，一共显示了 12 个 APP</li>
+<li>主界面下册区域为任务栏，有关机 Win 键和时间日期的同步显示</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8fba446303485ca13fb395eef3b6ad56.png" alt="桌面界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/88415ecd738a98819258e5ef303cc9f6.png" alt="关机界面"></p>
+<h3 id="3-2-1、时钟-APP"><a href="#3-2-1、时钟-APP" class="headerlink" title="3-2-1、时钟 APP"></a>3-2-1、时钟 APP</h3><ul>
+<li>时钟主界面左侧显示表盘，模拟时、分、秒指针，右侧显示时间、日期和时钟芯片温度</li>
+<li>时钟子界面采用 LISTWHEEL 控件，实现调整年、月时，自动调整日的最大值。如：将日期 2020-02-29 调整年为 2021，则天自动调整为 28</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/181ec3f64ee85f0e4863e11e89f29929.png" alt="时钟主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a4ea56c18b4b4fa87d30c9cd93d78373.png" alt="时钟子界面"></p>
+<h3 id="3-2-2、音乐-APP"><a href="#3-2-2、音乐-APP" class="headerlink" title="3-2-2、音乐 APP"></a>3-2-2、音乐 APP</h3><ul>
+<li>音乐主界面碟片是打开列表的按钮。主界面有音量、进度调节、耳机与外放切换，上一曲、下一曲、播放、暂停功能</li>
+<li>音乐子界面采用 LISTVIEW 控件，显示音乐列表</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/cded8a01b3c199dfce2296cf39c59886.png" alt="音乐主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8fbc87e38eae9ab408ae8e6bae865964.png" alt="音乐子界面"></p>
+<h3 id="3-2-3、图库-APP"><a href="#3-2-3、图库-APP" class="headerlink" title="3-2-3、图库 APP"></a>3-2-3、图库 APP</h3><ul>
+<li>图库主界面采用 LISTVIEW 控件，显示图片列表</li>
+<li>选择图片后全屏显示。点击图片左侧，向上切换图片。点击图片右侧，向下切换图片。点击图片中间，关闭图片</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3ee5bf028c2923ff9a045b9fda7b7fe5.png" alt="图库主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/374ff2c9c8430cd4ed3e59b8b8c80858.png" alt="图库子界面"></p>
+<h3 id="3-2-4、设置-APP"><a href="#3-2-4、设置-APP" class="headerlink" title="3-2-4、设置 APP"></a>3-2-4、设置 APP</h3><ul>
+<li>调节系统背光和系统音量，自动调节背光功能待开发</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/dcb5b4e2165a1daf41895da9c643c07f.png" alt="设置主界面"></p>
+<h3 id="3-2-5、文件-APP"><a href="#3-2-5、文件-APP" class="headerlink" title="3-2-5、文件 APP"></a>3-2-5、文件 APP</h3><ul>
+<li>文件主界面显示内部储存设备（3 个内部储存设备并未开发）和移动储存设备（SD 卡和 U 盘容量显示）</li>
+<li>文件子界面采用 CHOOSEFILE 控件，仅用于浏览 SD 卡和 U 盘中文件内容，但不能打开文件</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7110081ea495976fc0d987fa9b40d194.png" alt="文件主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/05fd86623cf190e2e1b347e1604a9faa.png" alt="文件子界面"></p>
+<h3 id="3-2-6、版本-APP"><a href="#3-2-6、版本-APP" class="headerlink" title="3-2-6、版本 APP"></a>3-2-6、版本 APP</h3><ul>
+<li>显示硬件和软件设计版本，手机扫描二维码会进入个人网站：<code>www.mazirong.com</code></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2e665311aaa5071ee611e30e2b194e8d.png" alt="版本主界面"></p>
+<h3 id="3-2-7、电影-APP"><a href="#3-2-7、电影-APP" class="headerlink" title="3-2-7、电影 APP"></a>3-2-7、电影 APP</h3><ul>
+<li>电影 APP 为双图层（图层 1 底层，图层 2 上层。程序默认运行在图层 1）设计，有关操作的按钮和进度条均在图层 2，电影播放在图层 1</li>
+<li>注意使用格式工厂软件转化视频时，视频分辨率为 800*480，且每秒帧数不推荐超过 30 帧，防止帧率太高无法播放</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ab3fa446cd12b0c1d4b93ee7221f2b02.png" alt="电影界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4a89a9de1666ab05a48b0f0c7ab0ff7f.png" alt="电影界面"></p>
+<h3 id="3-2-8、游戏-APP"><a href="#3-2-8、游戏-APP" class="headerlink" title="3-2-8、游戏 APP"></a>3-2-8、游戏 APP</h3><ul>
+<li>移植自网友 ye781205 的 nes 模拟器，实现外界 USB 游戏手柄畅玩 nes 类游戏</li>
+<li>游戏主界面采用 LISTVIEW 控件，显示游戏列表。选择进入游戏后，运行 nes 模拟器</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/646d3c9d4b9388eccee6da83be71a9ae.png" alt="游戏主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4e59ad847460948b07c2a41e9ce55b1a.png" alt="游戏子界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/312133c31fe01997901c894138d7bfba.png" alt="游戏子界面"></p>
+<h3 id="3-2-9、U-盘-APP"><a href="#3-2-9、U-盘-APP" class="headerlink" title="3-2-9、U 盘 APP"></a>3-2-9、U 盘 APP</h3><ul>
+<li>使用 Type-C 的 USB 数据线连接板子插入电脑，点击 USB Open 按钮，过几秒中电脑会显示出 SD 卡磁盘</li>
+<li>在与电脑连接状态下，点击 USB Close，立刻从电脑移除 SD 卡磁盘</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f2439ebe259e077efe099b52ec53a4b5.png" alt="U 盘主界面"></p>
+<h3 id="3-2-10、波形-APP"><a href="#3-2-10、波形-APP" class="headerlink" title="3-2-10、波形 APP"></a>3-2-10、波形 APP</h3><ul>
+<li>波形主界面模拟 2 个波形，波形幅度设置为 120 至 220</li>
+<li>波形子界面采用三原色配置背景、栅格、波形等颜色</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/da2b620fdd063e3eaf1a0dfcf9dd56c2.png" alt="波形主界面"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3f68674702e37a5a9e5a7635df3cd463.png" alt="波形子界面"></p>
+<p>自此，ALTA-STM32H7 掌机项目软硬件设计介绍完毕，后续可能全部开源，欢迎各位电子爱好者，极客朋友留言交流。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">智果小芯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://liuyao-blog.cn/posts/1006.html">http://liuyao-blog.cn/posts/1006.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://liuyao-blog.cn" target="_blank">智果小芯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/STM32/">STM32</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/1005.html"><img class="prev-cover" src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用STM32、FPGA、Linux点亮LED的异同</div></div></a></div><div class="next-post pull-right"><a href="/posts/1004.html"><img class="next-cover" src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">软件神器TortoiseGit，图形化方式管理单片机程序版本</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img class="cover" src="https://img-blog.csdnimg.cn/20210703151519731.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-23</div><div class="title">使用STM32、FPGA、Linux点亮LED的异同</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">智果小芯</div><div class="author-info__description"><p>专注嵌入式物联网开发<br/>微信公众号：果果小师弟</p></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://zhiguoxin.blog.csdn.net/"><i class="fab fa-gitee"></i><span>访问主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/zhiguoxin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhiguoxin@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/s/Eeca8cbK1RKCbDEi0-B4iQ" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">分享嵌入式linux、单片机、物联网等知识，致力于打造最硬核的嵌入式技术站，更多精彩内容请关注我的微信工众号：果果小师弟。<img src="https://img-blog.csdnimg.cn/20210715171459939.png"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-text">1、项目背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%A1%AC%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-text">2、硬件设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%E3%80%81%E6%A0%B8%E5%BF%83%E6%9D%BF%E9%85%8D%E7%BD%AE"><span class="toc-text">2-1、核心板配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%E3%80%81%E5%BA%95%E6%9D%BF%E9%85%8D%E7%BD%AE"><span class="toc-text">2-2、底板配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%E3%80%81%E5%B1%8F%E5%B9%95%E9%85%8D%E7%BD%AE"><span class="toc-text">2-3、屏幕配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-text">3、软件设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="toc-text">3-1、软件版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81%E6%8E%8C%E6%9C%BA%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%8F%8A%E5%BA%94%E7%94%A8-APP-%E4%BB%8B%E7%BB%8D"><span class="toc-text">3-2、掌机主界面及应用 APP 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1%E3%80%81%E6%97%B6%E9%92%9F-APP"><span class="toc-text">3-2-1、时钟 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2%E3%80%81%E9%9F%B3%E4%B9%90-APP"><span class="toc-text">3-2-2、音乐 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3%E3%80%81%E5%9B%BE%E5%BA%93-APP"><span class="toc-text">3-2-3、图库 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4%E3%80%81%E8%AE%BE%E7%BD%AE-APP"><span class="toc-text">3-2-4、设置 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5%E3%80%81%E6%96%87%E4%BB%B6-APP"><span class="toc-text">3-2-5、文件 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-6%E3%80%81%E7%89%88%E6%9C%AC-APP"><span class="toc-text">3-2-6、版本 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-7%E3%80%81%E7%94%B5%E5%BD%B1-APP"><span class="toc-text">3-2-7、电影 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-8%E3%80%81%E6%B8%B8%E6%88%8F-APP"><span class="toc-text">3-2-8、游戏 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-9%E3%80%81U-%E7%9B%98-APP"><span class="toc-text">3-2-9、U 盘 APP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-10%E3%80%81%E6%B3%A2%E5%BD%A2-APP"><span class="toc-text">3-2-10、波形 APP</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1003.html" title="如何正确的理解单片机的结构体"><img src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"/></a><div class="content"><a class="title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程"><img src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"/></a><div class="content"><a class="title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"/></a><div class="content"><a class="title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"/></a><div class="content"><a class="title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><img src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"/></a><div class="content"><a class="title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 智果小芯</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.chaicp.com/"><span>鄂ICP备20001730号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

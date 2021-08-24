@@ -1,32 +1,222 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>零基础教你教你写一个安卓app | 智果小芯</title><meta name="keywords" content="APP,安卓"><meta name="author" content="智果小芯"><meta name="copyright" content="智果小芯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：最近有很多小伙伴在后台留言：Android Studio。我想大家是想写一个手机app，前面已经分享了在QT上如何写一个安卓蓝牙app，虽然qt可以做app，但是比起Android Studio还是差很多。这里介绍一种快速入门的方法来制作一款app，就算你是零基础小白没有学习过java语言也没有关系，相信看完我的文章，半天时间也能做一个安卓app。本文针对初学者，大佬勿喷啊 1. 创建He">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零基础教你教你写一个安卓app">
+<meta property="og:url" content="http://liuyao-blog.cn/posts/1002.html">
+<meta property="og:site_name" content="智果小芯">
+<meta property="og:description" content="摘要：最近有很多小伙伴在后台留言：Android Studio。我想大家是想写一个手机app，前面已经分享了在QT上如何写一个安卓蓝牙app，虽然qt可以做app，但是比起Android Studio还是差很多。这里介绍一种快速入门的方法来制作一款app，就算你是零基础小白没有学习过java语言也没有关系，相信看完我的文章，半天时间也能做一个安卓app。本文针对初学者，大佬勿喷啊 1. 创建He">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/big_logo.jpg">
+<meta property="article:published_time" content="2021-08-22T07:48:49.000Z">
+<meta property="article:modified_time" content="2021-08-24T05:51:51.464Z">
+<meta property="article:author" content="智果小芯">
+<meta property="article:tag" content="APP">
+<meta property="article:tag" content="安卓">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/big_logo.jpg"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://liuyao-blog.cn/posts/1002"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?baf1456d4757404df2cbcc54325df167";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 智果小芯","link":"链接: ","source":"来源: 智果小芯","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '零基础教你教你写一个安卓app',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-24 13:51:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2762488_bo15j5gdids.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智果小芯" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/big_logo.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">智果小芯</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">零基础教你教你写一个安卓app</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-22T07:48:49.000Z" title="发表于 2021-08-22 15:48:49">2021-08-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-24T05:51:51.464Z" title="更新于 2021-08-24 13:51:51">2021-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%8D%93app/">安卓app</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="零基础教你教你写一个安卓app"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="https://img-blog.csdnimg.cn/20210715171443971.png" alt=" "></p>
+<p><strong>摘要</strong>：最近有很多小伙伴在后台留言：Android Studio。我想大家是想写一个手机app，前面已经分享了在QT上如何写一个安卓蓝牙app，虽然qt可以做app，但是比起Android Studio还是差很多。这里介绍一种快速入门的方法来制作一款app，就算你是零基础小白没有学习过java语言也没有关系，相信看完我的文章，半天时间也能做一个安卓app。本文针对初学者，大佬勿喷啊</p>
+<h2 id="1-创建HelloWorld项目"><a href="#1-创建HelloWorld项目" class="headerlink" title="1. 创建HelloWorld项目"></a>1. 创建HelloWorld项目</h2><p>这里我就不介绍如何安装这个Android Studio软件了，网上有很多教程或者去B站找对应的安装视频就可以了。安装好软件之后就开始按照下面的步骤新建工程了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811120211633.png" alt=" ">选择一个空应用</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811120256931.png" alt=" ">按照图片的配置方法，设置好工程名和路径</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811120931189.png" alt=" "></p>
+<h2 id="2-修改阿里云镜像源"><a href="#2-修改阿里云镜像源" class="headerlink" title="2. 修改阿里云镜像源"></a>2. 修改阿里云镜像源</h2><p>这一步一定要需要，不然的话你需要编译很久，因为在sync的过程中要下载的很多资源是在外网的，这里使用阿里云镜像源就会很快。修改后只对本项目有效：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020081112113139.png" alt=" ">第一处代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;</span>&#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/jcenter&#x27;</span>&#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/google&#x27;</span>&#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/gradle-plugin&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<p>第二处代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27;</span> &#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/jcenter&#x27;</span> &#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/google&#x27;</span> &#125;</span><br><span class="line">maven &#123; url <span class="string">&#x27;http://maven.aliyun.com/nexus/content/repositories/gradle-plugin&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<p><img src="https://img-blog.csdnimg.cn/20200811122002400.png" alt=" "></p>
+<p>这样编译起来就会快很多，建议这样修改，不然很可能下载失败导致编译不成功！</p>
+<p><img src="https://img-blog.csdnimg.cn/2020081112214074.png" alt=" "></p>
+<h2 id="3-真机调试"><a href="#3-真机调试" class="headerlink" title="3. 真机调试"></a>3. 真机调试</h2><p>我们可以编译完成后打包成apk文件发送到你的手机进行安装运行，但我建议还是手机连上数据线在线调试比较好，省去很多时间也非常方便。手机连接电脑后打开USB调试，这里以华为荣耀V10手机作为参考。</p>
+<ul>
+<li>1.选择USB连接方式是MIDI(将设备用做MIDI输入设备)</li>
+<li>2.在设置的“系统和更新”—&gt;开发人员选项—&gt;打开USB调试</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2020081112330279.png" alt=" "></p>
+<p>然后点击这个三角形，就可以看到手机上的APP显示了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811124829131.png" alt=" "></p>
+<p>运行结果和上图一样。到这里我们已经完成了一个app的制作怎么样是不是很简单啊！</p>
+<p>接下来介绍一下代码目录，方便大家能够快速的掌握和了解项目所生成文件功能和用途！</p>
+<h2 id="4-Android代码目录"><a href="#4-Android代码目录" class="headerlink" title="4. Android代码目录"></a>4. Android代码目录</h2><p>这里有两种文件架构，所打开的也是两种不同的目录文件。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811124259926.png" alt=" "></p>
+<p><img src="https://img-blog.csdnimg.cn/20200811125548767.png" alt=" "></p>
+<h2 id="5-Android应用程序大致启动流程"><a href="#5-Android应用程序大致启动流程" class="headerlink" title="5. Android应用程序大致启动流程"></a>5. Android应用程序大致启动流程</h2><h3 id="5-1-APP配置文件"><a href="#5-1-APP配置文件" class="headerlink" title="5.1. APP配置文件"></a>5.1. APP配置文件</h3><p><img src="https://img-blog.csdnimg.cn/20200811130034321.png" alt=" "></p>
+<h3 id="5-2-活动文件（Java）"><a href="#5-2-活动文件（Java）" class="headerlink" title="5.2. 活动文件（Java）"></a>5.2. 活动文件（Java）</h3><p><img src="https://img-blog.csdnimg.cn/20200811131422515.png" alt=" "></p>
+<h3 id="5-3-布局文件（XML）"><a href="#5-3-布局文件（XML）" class="headerlink" title="5.3. 布局文件（XML）"></a>5.3. 布局文件（XML）</h3><p>Android设计讲究前后端分离设计，上面的java文件是后端，引入了activity_main这个前端界面布局文件，如果想再设计一个界面就在layout文件夹下再新建一个 ==.xml==文件就可以了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200811131730466.png" alt=" "></p>
+<h3 id="5-4-res资源目录（统一管理）"><a href="#5-4-res资源目录（统一管理）" class="headerlink" title="5.4. res资源目录（统一管理）"></a>5.4. res资源目录（统一管理）</h3><p><img src="https://img-blog.csdnimg.cn/20200811132432292.png" alt=" "></p>
+<h4 id="5-4-1-colors-xml"><a href="#5-4-1-colors-xml" class="headerlink" title="5.4.1. colors.xml"></a>5.4.1. colors.xml</h4><p><img src="https://img-blog.csdnimg.cn/2020081113274675.png" alt=" "></p>
+<p>三个颜色有点少我们可以在加一些颜色但这里面来。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;color name=<span class="string">&quot;white&quot;</span>&gt;#FFFFFF&lt;/color&gt; &lt;!--白色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;ivory&quot;</span>&gt;#FFFFF0&lt;/color&gt; &lt;!--象牙色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;lightyellow&quot;</span>&gt;#FFFFE0&lt;/color&gt; &lt;!--亮黄色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;yellow&quot;</span>&gt;#FFFF00&lt;/color&gt; &lt;!--黄色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;snow&quot;</span>&gt;#FFFAFA&lt;/color&gt; &lt;!--雪白色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;floralwhite&quot;</span>&gt;#FFFAF0&lt;/color&gt; &lt;!--花白色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;lemonchiffon&quot;</span>&gt;#FFFACD&lt;/color&gt; &lt;!--柠檬绸色 --&gt;</span><br><span class="line">&lt;color name=<span class="string">&quot;cornsilk&quot;</span>&gt;#FFF8DC&lt;/color&gt; &lt;!--米绸色 --&gt;</span><br></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<h4 id="5-4-2-strings-xml"><a href="#5-4-2-strings-xml" class="headerlink" title="5.4.2. strings.xml"></a>5.4.2. strings.xml</h4><p><img src="https://img-blog.csdnimg.cn/20200811133344664.png" alt=" "></p>
+<h4 id="5-4-3-styles-xml"><a href="#5-4-3-styles-xml" class="headerlink" title="5.4.3. styles.xml"></a>5.4.3. styles.xml</h4><p><img src="https://img-blog.csdnimg.cn/20200811133529498.png" alt=" ">***</p>
+<h2 id="5、主界面布置"><a href="#5、主界面布置" class="headerlink" title="5、主界面布置"></a>5、主界面布置</h2><h3 id="5-1线性布局-LinearLayout"><a href="#5-1线性布局-LinearLayout" class="headerlink" title="5.1线性布局(LinearLayout)"></a>5.1线性布局(LinearLayout)</h3><p>线性布局的形式可以分为两种，第一种横向线性布局，第二种纵向线性布局，总而言之都是以线性的形式一个个排列出来的，纯线性布局的缺点是很不方便修改控件的显示位置，所以开发中经常会以线性布局与相对布局嵌套的形式设置布局。</p>
+<h3 id="5-2相对布局-RelativeLayout"><a href="#5-2相对布局-RelativeLayout" class="headerlink" title="5.2相对布局(RelativeLayout)"></a>5.2相对布局(RelativeLayout)</h3><p>相对布局是android布局中最为强大的，首先它可以设置的属性是最多了，其次它可以做的事情也是最多的。android手机屏幕的分辨率五花八门，为了考虑屏幕自适应的情况，在开发中建议大家都去使用相对布局，它的坐标取值范围都是相对的，所以使用它来做自适应屏幕是正确的。</p>
+<h3 id="5-3帧布局-FrameLayout"><a href="#5-3帧布局-FrameLayout" class="headerlink" title="5.3帧布局(FrameLayout)"></a>5.3帧布局(FrameLayout)</h3><p>帧布局原理是在控件中绘制任何一个控件都可以被后绘制的控件覆盖，最后绘制的控件会盖住之前的控件。界面中先绘制的ImageView 然后再绘制的TextView和EditView，后者就会覆盖在前者上面。</p>
+<h3 id="5-4绝对布局-AbsoluteLayout"><a href="#5-4绝对布局-AbsoluteLayout" class="headerlink" title="5.4绝对布局(AbsoluteLayout)"></a>5.4绝对布局(AbsoluteLayout)</h3><p>使用绝对布局可以设置任意控件在屏幕中XY坐标点，和帧布局一样绘制的控件会覆盖住之前绘制的控件，不建议大家使用绝对布局。android的手机分辨率五花八门，使用绝对布局的话在其它分辨率的手机上就无法正常的显示了。</p>
+<h3 id="5-5表格布局-TableLayout"><a href="#5-5表格布局-TableLayout" class="headerlink" title="5.5表格布局(TableLayout)"></a>5.5表格布局(TableLayout)</h3><p>在表格布局中可以设置TableRow，可以设置表格中每一行显示的内容以及位置 ，可以设置显示的缩进，对齐的方式。</p>
+<p>在实际应用中线行布局和相对布局是最常用的，一般自己写的app布局都相对比较简单，所以这里我们使用线性布局。打开APP配置文件中的<code>activity_main.xml</code>，就可以在这里面愉快的编程了。如果你之前没有玩过Android Studio也没有关系，左边修改右边预览多试试几次就大概明白了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210427213553668.png" alt=" "></p>
+<p>在这里我们可以修改点击图片所转换的网址，大家打开源码就知道如何修改了，这里就不在赘述！</p>
+<p><img src="https://img-blog.csdnimg.cn/20210427213448601.png" alt=" "></p>
+<p>在<code>activity_main.xml</code>文件中我们可以修改界面的布局。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210427213553668.png" alt=" "></p>
+<p>到这里基本上一个简单的安卓应用就完成了。只要你安装了Android Studio软件并且拿到我的源码就可以愉快的玩耍了。什么？你拿到我的代码却不能正常编译通过？下面就教大家如何把别人的源码拿到自己的软件中编译通过！</p>
+<h2 id="6、代码移植"><a href="#6、代码移植" class="headerlink" title="6、代码移植"></a>6、代码移植</h2><p>以下是需要修改文件的地方，具体修改成啥样，可以参考一个你可以打的开的工程中的配置，参考对应的文件即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821171112615.png#pic_center" alt=" "></p>
+<h3 id="1-修改build-gradle文件"><a href="#1-修改build-gradle文件" class="headerlink" title="1.修改build.gradle文件"></a>1.修改build.gradle文件</h3><p><img src="https://img-blog.csdnimg.cn/20200821171335837.png" alt=" "></p>
+<h3 id="2-修改app-build-gradle文件"><a href="#2-修改app-build-gradle文件" class="headerlink" title="2.修改app/build.gradle文件"></a>2.修改app/build.gradle文件</h3><p>修改版本号</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821171514675.png#pic_center" alt=" "></p>
+<h3 id="3-修改gradle-wrapper-gradle-wrapper-properties"><a href="#3-修改gradle-wrapper-gradle-wrapper-properties" class="headerlink" title="3.修改gradle/wrapper/gradle-wrapper.properties"></a>3.修改gradle/wrapper/gradle-wrapper.properties</h3><p>这个地方修改成你可以打开的工程的 ==. zip==包</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821171554198.png#pic_center" alt=" "></p>
+<h3 id="4-修改local-properties"><a href="#4-修改local-properties" class="headerlink" title="4.修改local.properties"></a>4.修改local.properties</h3><p>这个地方是你的软件安装路径所在的位置，要修改成你自己的安装路径</p>
+<p><img src="https://img-blog.csdnimg.cn/20200821171629501.png#pic_center" alt=" "></p>
+<p>公众号后台回复：firstapp，即可获取源码和教程文档！</p>
+<p><img src="https://img-blog.csdnimg.cn/20210715171459939.png" alt=" "></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">智果小芯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://liuyao-blog.cn/posts/1002.html">http://liuyao-blog.cn/posts/1002.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://liuyao-blog.cn" target="_blank">智果小芯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/APP/">APP</a><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%8D%93/">安卓</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/1001.html"><img class="prev-cover" src="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/IMG_0210.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">公众号|博客原创图文汇总——必看</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">智果小芯</div><div class="author-info__description"><p>专注嵌入式物联网开发<br/>微信公众号：果果小师弟</p></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://zhiguoxin.blog.csdn.net/"><i class="fab fa-gitee"></i><span>访问主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/zhiguoxin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhiguoxin@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/s/Eeca8cbK1RKCbDEi0-B4iQ" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">分享嵌入式linux、单片机、物联网等知识，致力于打造最硬核的嵌入式技术站，更多精彩内容请关注我的微信工众号：果果小师弟。<img src="https://img-blog.csdnimg.cn/20210715171459939.png"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BAHelloWorld%E9%A1%B9%E7%9B%AE"><span class="toc-text">1. 创建HelloWorld项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%BA%90"><span class="toc-text">2. 修改阿里云镜像源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95"><span class="toc-text">3. 真机调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Android%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95"><span class="toc-text">4. Android代码目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%A4%A7%E8%87%B4%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="toc-text">5. Android应用程序大致启动流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-APP%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">5.1. APP配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%B4%BB%E5%8A%A8%E6%96%87%E4%BB%B6%EF%BC%88Java%EF%BC%89"><span class="toc-text">5.2. 活动文件（Java）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%EF%BC%88XML%EF%BC%89"><span class="toc-text">5.3. 布局文件（XML）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-res%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95%EF%BC%88%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%EF%BC%89"><span class="toc-text">5.4. res资源目录（统一管理）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-1-colors-xml"><span class="toc-text">5.4.1. colors.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-2-strings-xml"><span class="toc-text">5.4.2. strings.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-3-styles-xml"><span class="toc-text">5.4.3. styles.xml</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%B8%83%E7%BD%AE"><span class="toc-text">5、主界面布置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1%E7%BA%BF%E6%80%A7%E5%B8%83%E5%B1%80-LinearLayout"><span class="toc-text">5.1线性布局(LinearLayout)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2%E7%9B%B8%E5%AF%B9%E5%B8%83%E5%B1%80-RelativeLayout"><span class="toc-text">5.2相对布局(RelativeLayout)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3%E5%B8%A7%E5%B8%83%E5%B1%80-FrameLayout"><span class="toc-text">5.3帧布局(FrameLayout)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4%E7%BB%9D%E5%AF%B9%E5%B8%83%E5%B1%80-AbsoluteLayout"><span class="toc-text">5.4绝对布局(AbsoluteLayout)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5%E8%A1%A8%E6%A0%BC%E5%B8%83%E5%B1%80-TableLayout"><span class="toc-text">5.5表格布局(TableLayout)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E4%BB%A3%E7%A0%81%E7%A7%BB%E6%A4%8D"><span class="toc-text">6、代码移植</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9build-gradle%E6%96%87%E4%BB%B6"><span class="toc-text">1.修改build.gradle文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9app-build-gradle%E6%96%87%E4%BB%B6"><span class="toc-text">2.修改app&#x2F;build.gradle文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E6%94%B9gradle-wrapper-gradle-wrapper-properties"><span class="toc-text">3.修改gradle&#x2F;wrapper&#x2F;gradle-wrapper.properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BF%AE%E6%94%B9local-properties"><span class="toc-text">4.修改local.properties</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1003.html" title="如何正确的理解单片机的结构体"><img src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"/></a><div class="content"><a class="title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程"><img src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"/></a><div class="content"><a class="title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"/></a><div class="content"><a class="title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"/></a><div class="content"><a class="title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><img src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"/></a><div class="content"><a class="title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/big_logo.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 智果小芯</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.chaicp.com/"><span>鄂ICP备20001730号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

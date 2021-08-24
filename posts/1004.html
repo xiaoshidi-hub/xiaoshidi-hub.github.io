@@ -1,32 +1,230 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>软件神器TortoiseGit，图形化方式管理单片机程序版本 | 智果小芯</title><meta name="keywords" content="TortoiseGit"><meta name="author" content="智果小芯"><meta name="copyright" content="智果小芯"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：大家肯定都写过毕业论文，写毕业论文的时候，每次修改之前，都会先把当前最新的版本复制一份，然后再重新命名一个标题，但是，之前的旧版本又不会删掉，为了保险起见，感觉万一新的文档没改好还能有个旧的版本可以用。 于是，就有了下面的一幕  大家别笑，这都是真实发生的案例，更有甚者，自己笔记本拷贝毕业论文到U盘，在其它电脑修改了，又忘记更新回自己电脑，或者，时间长了，想找到之前文档中的一些文字，但是又忘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件神器TortoiseGit，图形化方式管理单片机程序版本">
+<meta property="og:url" content="http://liuyao-blog.cn/posts/1004.html">
+<meta property="og:site_name" content="智果小芯">
+<meta property="og:description" content="摘要：大家肯定都写过毕业论文，写毕业论文的时候，每次修改之前，都会先把当前最新的版本复制一份，然后再重新命名一个标题，但是，之前的旧版本又不会删掉，为了保险起见，感觉万一新的文档没改好还能有个旧的版本可以用。 于是，就有了下面的一幕  大家别笑，这都是真实发生的案例，更有甚者，自己笔记本拷贝毕业论文到U盘，在其它电脑修改了，又忘记更新回自己电脑，或者，时间长了，想找到之前文档中的一些文字，但是又忘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210703102832113.png">
+<meta property="article:published_time" content="2021-08-23T07:13:49.000Z">
+<meta property="article:modified_time" content="2021-08-24T05:51:57.445Z">
+<meta property="article:author" content="智果小芯">
+<meta property="article:tag" content="TortoiseGit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210703102832113.png"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://liuyao-blog.cn/posts/1004"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?baf1456d4757404df2cbcc54325df167";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 智果小芯","link":"链接: ","source":"来源: 智果小芯","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '软件神器TortoiseGit，图形化方式管理单片机程序版本',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-08-24 13:51:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2762488_bo15j5gdids.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="智果小芯" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img-blog.csdnimg.cn/20210703102832113.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">智果小芯</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fas fa-user-secret"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fas fa-search-plus"></i><span> 导航</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">软件神器TortoiseGit，图形化方式管理单片机程序版本</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-24T05:51:57.445Z" title="更新于 2021-08-24 13:51:57">2021-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/TortoiseGit/">TortoiseGit</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>摘要</strong>：大家肯定都写过毕业论文，写毕业论文的时候，每次修改之前，都会先把当前最新的版本复制一份，然后再重新命名一个标题，但是，之前的旧版本又不会删掉，为了保险起见，感觉万一新的文档没改好还能有个旧的版本可以用。</p>
+<p>于是，就有了下面的一幕</p>
+<p><img src="https://img-blog.csdnimg.cn/2021070311013953.png" alt=" "></p>
+<p>大家别笑，这都是真实发生的案例，更有甚者，自己笔记本拷贝毕业论文到U盘，<strong>在其它电脑修改了，又忘记更新回自己电脑</strong>，或者，时间长了，想找到之前文档中的一些文字，<strong>但是又忘记在那个版本来。</strong></p>
+<p>是不是非常苦恼，你可能觉得，那我找回之前的版本一个个查看不就可以了，又没删，但是你这才几个文件，如果文件数量翻几倍呢？</p>
+<p><strong>那么，有没有什么软件可以帮助我们对文件进行版本控制呢</strong>？今天，晓宇姐姐教大家用<code>Git</code>来进行版本控制。</p>
+<p>听到Git，一些单片机或者是软件开发的初学者又打算停止看下去了，好麻烦啊，又得记一堆命令，每次改完我也懒得命令提交，我还是通过日期来记录好了，于是又出现下面一幕：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703104558319.png" alt=" "></p>
+<p>项目完成初期，还大致记得每个版本改了什么，1个月后，需要某个旧版本的信息，或者新的版本出了什么问题，<strong>需要追溯查找改动的代码部分</strong>，这时候，麻烦就来了，工程师喃喃自语道 “<strong>我好像记得改了这个地方，但是不知道是不是只有这个地方改动来”，然后，很苦逼的一个文件一个文件的去对比</strong>。</p>
+<p>看到上面的这一幕，我们肯定不想重蹈上面工程师的覆辙，但是即使用文件记得再详细，当在不同电脑，或者是不同工程师开发同一个项目的时候，几乎不可能不出错的记录，<strong>而且这样记录，很累</strong>。</p>
+<p>上面说的一大堆，所谓欲扬先抑，就是为了引出我们今天的主角，一个软件版本控制神器<strong>TortoiseGit</strong>。</p>
+<p>TortoiseGit，简称tgit，中文名海龟Git，是一个GIT版本控制系统的客户端。</p>
+<p>我们需要先下载几个软件，并依次安装好：</p>
+<p>1、Git-2.28.0-64-bit，大家根据自己的系统下载<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+<p>2、TortoiseGit<a target="_blank" rel="noopener" href="https://tortoisegit.org/download/">https://tortoisegit.org/download/</a></p>
+<p>3、TortoiseGit  Language Packs，汉化包，下载链接同上。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703091516103.png" alt="TortoiseGit安装包"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703091630481.png" alt="汉化包"></p>
+<p>我们在E盘项目文件下创建一个文件夹，用来存储以太网网关项目的资料，并右键执行如下操作，在此文件夹下面创建一个版本库：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703105011534.png" alt="创建版本库"></p>
+<p>可以看到，在文件夹下多了一个<code>.git</code>的隐藏文件夹，千万不要删掉，这个就是我们的版本记录文件。</p>
+<p>进行正式操作之前，我们先简单配置一下软件：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703092742719.png" alt="设置"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703092931571.png" alt="修改软件语言和git路径"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703093052366.png" alt="编辑全局"></p>
+<p>最后一幅图，配置用户信息，做为用户操作git的个人标识，我们填写<strong>个人名称</strong>和<strong>邮箱</strong>，然后编辑一下全局变量，加入以下配置，用于记住密码。之后保存退出即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[credential]</span><br><span class="line">  helper = store</span><br></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<p>我们把我们第一版本的工程文件放入software文件夹下，然后打开工程，这就是我们的V1.0.0版本的原始程序了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094010224.png" alt=" "></p>
+<p>V1.0.0版本的程序写好之后，我们需要先提交一次，如下操作：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094048495.png" alt="准备提交"></p>
+<p>然后会弹出一个对话框，注意，这个是重点：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094225359.png" alt=" "></p>
+<p>第一个红框中，需要填写版本日志信息，需要说明这个版本所更新的内容；第二个红框中，为提交者的的名字以及提交的日期，这个主要在多人协同中比较有用；第三个红框勾选全部，然后会把本次更新所涉及到的文件全部选中，最后选择提交。</p>
+<p>看到下图红框中的成功，表示本次推送成功，这里，仅仅是把更新推送到本地Git仓库，文件都还在本地。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094335331.png" alt="推送本地库成功"></p>
+<p>我们的代码版本，不仅可以存在本地仓库存储，还可以推送到云端服务器进行保存，我们可以搭建本地的Git服务器，也可以使用现成的Git服务器，这里推荐其中一个平台码云。</p>
+<p>对的，你没听错，是<strong>码云</strong>，网址：<a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com/</a>，大家各自注册号账号。</p>
+<p>然后，按照下图建立一个私有仓库</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094443506.png" alt="新建仓库"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094706574.png" alt="填写仓库信息"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210703095103213.png" alt="复制仓库地址"></p>
+<p>点击管理，把我们刚刚复制的那个链接放进URL框中，点击保存。这个链接是我们项目的远端地址，也是我们将本</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703094838610.png" alt="向远端推送"></p>
+<p><img src="https://img-blog.csdnimg.cn/2021070309503082.png" alt="设置远端推送信息"></p>
+<p>确认文件推送的地址，然后确定推送。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703102832113.png" alt="推送成功"></p>
+<p>如果推送失败，需要<strong>先拉取一下服务器文件更新一下本地仓库</strong>，然后再推送即可。</p>
+<p>推送成功之后，我们看看网页端有什么变化。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703103024923.png" alt=" "></p>
+<p>主页动态框这里，马上就更新了，提示，某某某在什么时间段推送了什么文件到哪个分支，在多人服务同一个项目的时候特别有用。</p>
+<p>我们再看看项目页面，可以看到，我们的整个工程文件都更新到服务器了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703102910468.png" alt="更新完成"></p>
+<p>过了几天，我们更新了V1.1.0版本，在主函数中增加了一句话，部分改动如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703103215339.png" alt=" "></p>
+<p>我们保存编译之后，重新提交，方法还是按照上面的，提交之前，我们看到文件夹的图标由之前绿色的对号变成了红色的感叹号，绿色代表文件目前都是最新的，红色代表里面又改动过了，还没提交。</p>
+<p><img src="https://img-blog.csdnimg.cn/2021070310345469.png" alt=" "></p>
+<p>同样的开始推送</p>
+<p><img src="https://img-blog.csdnimg.cn/2021070310352429.png" alt=" "></p>
+<p>我们在可以看到本次提交的变更列表中，主要改动的就是添加了一句话。</p>
+<p><img src="https://img-blog.csdnimg.cn/2021070310373047.png" alt=" "></p>
+<p><strong>黄色背景部分直接就显示出了新旧两个版本之间改动过的地方，这一功能是不是特有用</strong>，当我们想找回以前版本到底改动了哪些的时候，直接在对话框中选中相应的版本，<strong>然后在变更列表中我们就可以很清晰的看出被改动过的每一行。</strong></p>
+<p>然后我们像之前一样点击提交，提交之后，可以再网页动态看到本次提交的信息，然后在项目统计这里，我们可以看到完整的项目提交历史。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703103916645.png" alt=" "></p>
+<p>在本地文件夹，我们也可以查看版本记录，方法如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703104048943.png" alt="查看日志"></p>
+<p>在这个界面，我们可以非常清晰的看到各个版本之间的变更信息，提交的作者以及日期，对于我们掌控整个项目的生命周期，能起到非常重要的作用。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210703104010644.png" alt=" "></p>
+<p>我们想导出哪个历史版本，直接在对应版本右键导出即可。</p>
+<p>啰嗦了一大堆，我们上面说的，<strong>说白了就是一个软件，这个软件可以帮助我们以可视化的方式管理我们的程序版本，方便我们追溯回顾历史更改，同时可以提交到服务器，便于备份文件</strong>，同时，也方便我们在不同的地点，环境修改代码，改完之后提交到服务器，这样，这服务器永远保留最新的版本，不同的终端也可以看到修改的问题点，大大的方便了我们的项目管理。</p>
+<p>本次先带大家简单入门，大家也可以自己摸索，<strong>TortoiseGit的功能非常强大</strong>，我们这里只是介绍了其中一部分，剩下的下次再跟大家唠嗑。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">智果小芯</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://liuyao-blog.cn/posts/1004.html">http://liuyao-blog.cn/posts/1004.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://liuyao-blog.cn" target="_blank">智果小芯</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/TortoiseGit/">TortoiseGit</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/1006.html"><img class="prev-cover" src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</div></div></a></div><div class="next-post pull-right"><a href="/posts/1001.html"><img class="next-cover" src="https://gitee.com/zhiguoxin/PicGO-Gitee/raw/master/PicGO-updata-img/IMG_0210.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">公众号|博客原创图文汇总——必看</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E6%9E%9C%E6%9E%9C%E5%B0%8F%E5%B8%88%E5%BC%9F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">智果小芯</div><div class="author-info__description"><p>专注嵌入式物联网开发<br/>微信公众号：果果小师弟</p></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://zhiguoxin.blog.csdn.net/"><i class="fab fa-gitee"></i><span>访问主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/zhiguoxin" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:zhiguoxin@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://mp.weixin.qq.com/s/Eeca8cbK1RKCbDEi0-B4iQ" target="_blank" title="WeChat"><i class="fab fa-weixin"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">分享嵌入式linux、单片机、物联网等知识，致力于打造最硬核的嵌入式技术站，更多精彩内容请关注我的微信工众号：果果小师弟。<img src="https://img-blog.csdnimg.cn/20210715171459939.png"/></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/1003.html" title="如何正确的理解单片机的结构体"><img src="https://img-blog.csdnimg.cn/20210508114736805.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="如何正确的理解单片机的结构体"/></a><div class="content"><a class="title" href="/posts/1003.html" title="如何正确的理解单片机的结构体">如何正确的理解单片机的结构体</a><time datetime="2021-08-23T08:24:49.000Z" title="发表于 2021-08-23 16:24:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程"><img src="https://img-blog.csdnimg.cn/20210518211019845.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SOCKET编程|TCP、UDP网络编程"/></a><div class="content"><a class="title" href="/posts/1007.html" title="SOCKET编程|TCP、UDP网络编程">SOCKET编程|TCP、UDP网络编程</a><time datetime="2021-08-23T08:16:49.000Z" title="发表于 2021-08-23 16:16:49">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同"><img src="https://img-blog.csdnimg.cn/20210703151519731.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用STM32、FPGA、Linux点亮LED的异同"/></a><div class="content"><a class="title" href="/posts/1005.html" title="使用STM32、FPGA、Linux点亮LED的异同">使用STM32、FPGA、Linux点亮LED的异同</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"><img src="https://img-blog.csdnimg.cn/img_convert/d931f239517f0f6a71ee7ac305f05ea4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)"/></a><div class="content"><a class="title" href="/posts/1006.html" title="一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)">一位业余爱好者花两年时间完成的STM32H7掌上电脑(软硬件开源)</a><time datetime="2021-08-23T07:53:50.000Z" title="发表于 2021-08-23 15:53:50">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本"><img src="https://img-blog.csdnimg.cn/20210703102832113.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件神器TortoiseGit，图形化方式管理单片机程序版本"/></a><div class="content"><a class="title" href="/posts/1004.html" title="软件神器TortoiseGit，图形化方式管理单片机程序版本">软件神器TortoiseGit，图形化方式管理单片机程序版本</a><time datetime="2021-08-23T07:13:49.000Z" title="发表于 2021-08-23 15:13:49">2021-08-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img-blog.csdnimg.cn/20210703102832113.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 智果小芯</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.chaicp.com/"><span>鄂ICP备20001730号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
